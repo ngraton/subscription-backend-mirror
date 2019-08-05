@@ -2,10 +2,10 @@ from django.db import models
 
 class Subscription(models.Model):
   INTERVALS =  [
-    ('annual', 'Annual'),
+    ('annual', 'annual'),
     # ('Semiannual', 'Semiannual')
-    ('quarterly', 'Quarterly'),
-    ('monthly', 'Monthly'),
+    ('quarterly', 'quarterly'),
+    ('monthly', 'monthly'),
     # ('Weekly', 'Weekly')
 ]
 
