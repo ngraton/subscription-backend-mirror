@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'subscriptions',
     'users',
     'rest_framework',
+    'django_filters',
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser'
