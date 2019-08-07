@@ -14,7 +14,7 @@ SECRET_KEY = '1jo4c95+h9omaz!0w87a^n6b-97^p1-ytzg1$l10ired!*rek1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost:3000']
 
 
 # Application definition
@@ -29,7 +29,15 @@ INSTALLED_APPS = [
 
     'subscriptions',
     'users',
+
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
+
     'django_filters',
 ]
 
@@ -114,5 +122,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+SITE_ID = 1
 
 django_heroku.settings(locals())
