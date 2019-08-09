@@ -2,18 +2,19 @@ import os
 
 from twilio.rest import Client
 
+def send_sms(phone_number, message):
 
-# Your Account Sid and Auth Token from twilio.com/console
-# DANGER! This is insecure. See http://twil.io/secure
-account_sid = os.environ['TWILIO_ACCOUNT_SID']
-auth_token = os.environ['TWILIO_AUTH_TOKEN']
-client = Client(account_sid, auth_token)
+  account_sid = os.environ['TWILIO_ACCOUNT_SID']
+  auth_token = os.environ['TWILIO_AUTH_TOKEN']
+  client = Client(account_sid, auth_token)
 
-message = client.messages \
-                .create(
-                     body="Join Earth's mightiest heroes. Like Kevin Bacon.",
-                     from_='+13126839646',
-                     to='+18054510685'
-                 )
+  message = client.messages \
+                  .create(
+                      body=message,
+                      from_='+13126839646',
+                      to=phone_number,
+                  )
 
-print(message.sid)
+# print(message.sid)
+
+send_sms('+18054510685', 'working')

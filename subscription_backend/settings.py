@@ -14,7 +14,7 @@ SECRET_KEY = '1jo4c95+h9omaz!0w87a^n6b-97^p1-ytzg1$l10ired!*rek1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.ngrok.io']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'rest_auth.registration',
 
     'django_filters',
+    'notifications',
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser'
