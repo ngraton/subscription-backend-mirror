@@ -8,5 +8,5 @@ class CustomUserListView(generics.ListAPIView):
   serializer_class = CustomUserSerializer
   queryset = CustomUser.objects.all()
   filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
-  filterset_fields = ['username',]
+  filterset_fields = ['username']
 
