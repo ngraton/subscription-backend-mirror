@@ -40,6 +40,8 @@ INSTALLED_APPS = [
 
     'django_filters',
     'notifications',
+    'django_extensions',
+
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser'
