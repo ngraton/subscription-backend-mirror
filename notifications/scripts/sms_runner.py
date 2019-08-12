@@ -8,7 +8,7 @@ import sys
 def run():
   now = datetime.datetime.now()
 
-  if len(sys.argv > 1):
+  if len(sys.argv) > 1:
     message_text = sys.argv[1]
   else:
     message_text = "It's a new month. Log into your account at https://subreckoner.herokuapp.com/ to see what subscriptions are due this month."
