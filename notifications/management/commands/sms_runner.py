@@ -10,11 +10,11 @@ class Command(BaseCommand):
   help = "<appropriate help text here>"
   def handle(self, *args, **options):
     now = datetime.datetime.now()
-
+    print(now.day)
 
     message_text = "It's a new month. Log into your account at https://subreckoner.herokuapp.com/ to see what subscriptions are due this month."
 
-    if now.date == 12:
+    if now.day == 12:
       profiles = Profile.objects.all()
       # notifitions_sent = CustomUser.objects.filter(notifications__time_stamp__year=now.year, notifications__time_stamp__month=now.month)
       # users_to_notify = users_with_notification_on.difference(notifitions_sent)
@@ -23,5 +23,5 @@ class Command(BaseCommand):
         phone_number = profile.phone_number
         print(phone_number)
         send_sms(phone_number, message_text)
-        note = Notification(phone_number=phone_number, user=user.id, message=message_text)
+        note = Notification(phone_number=phone_number, user=profile.user, message=message_text)
         note.save()
