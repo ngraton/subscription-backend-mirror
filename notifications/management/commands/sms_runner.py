@@ -3,22 +3,24 @@ from subscriptions.models import Subscription
 from notifications.models import Notification
 from notifications.send_sms import send_sms
 import datetime
-import sys
+
+from django.core.management.base import BaseCommand
+
+class Command(BaseCommand):
+  help = "<appropriate help text here>"
+  def handle(self, *args, **options):
+    now = datetime.datetime.now()
 
 
-now = datetime.datetime.now()
+    message_text = "It's a new month. Log into your account at https://subreckoner.herokuapp.com/ to see what subscriptions are due this month."
 
-if len(sys.argv) > 1:
-  message_text = sys.argv[1]
-else:
-  message_text = "It's a new month. Log into your account at https://subreckoner.herokuapp.com/ to see what subscriptions are due this month."
+    if now.date == 12:
+      users_with_notification_on = CustomUser.objects.exclude(profile__isnull=True)
+      # notifitions_sent = CustomUser.objects.filter(notifications__time_stamp__year=now.year, notifications__time_stamp__month=now.month)
+      # users_to_notify = users_with_notification_on.difference(notifitions_sent)
 
-users_with_notification_on = CustomUser.objects.exclude(profile__isnull=True)
-notifitions_sent = Notification.objects.filter(time_stamp__year=now.year, time_stamp__month=now.month).users.all()
-users_to_notify = users_with_notification_on.difference(notifitions_sent)
-
-for user in users_to_notify:
-  phone_number = user.profile.phone_number
-  send_sms(phone_number, message_text)
-  note = Notification(phone_number=phone_number, user=user.id, message=message_text)
-  note.save()
+      for user in users_with_notification_on:
+        phone_number = user.profile.phone_number
+        send_sms(phone_number, message_text)
+        note = Notification(phone_number=phone_number, user=user.id, message=message_text)
+        note.save()

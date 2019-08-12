@@ -17,4 +17,4 @@ def send_sms(phone_number, message):
 
 # print(message.sid)
 
-send_sms('+18054510685', 'working')
+# send_sms('+18054510685', 'working')
