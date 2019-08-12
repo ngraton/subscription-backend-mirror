@@ -14,8 +14,8 @@ else:
   message_text = "It's a new month. Log into your account at https://subreckoner.herokuapp.com/ to see what subscriptions are due this month."
 
 users_with_notification_on = CustomUser.objects.exclude(profile__isnull=True)
-notifitions_sent = Notification.objects.filter(time_stamp__year=now.year, time_stamp__month=now.month)
-users_to_notify = users_with_notification_on.difference(notifitions_sent.objects.users.all())
+notifitions_sent = Notification.objects.filter(time_stamp__year=now.year, time_stamp__month=now.month).users.all()
+users_to_notify = users_with_notification_on.difference(notifitions_sent)
 
 for user in users_to_notify:
   phone_number = user.profile.phone_number
