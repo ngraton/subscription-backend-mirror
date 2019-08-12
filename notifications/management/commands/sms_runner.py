@@ -15,7 +15,7 @@ else:
 
 users_with_notification_on = CustomUser.objects.exclude(profile__isnull=True)
 notifitions_sent = Notification.objects.filter(time_stamp__year=now.year, time_stamp__month=now.month)
-users_to_notify = users_with_notification_on.difference(notifitions_sent.users.all())
+users_to_notify = users_with_notification_on.difference(notifitions_sent.objets.users.all())
 
 for user in users_to_notify:
   phone_number = user.profile.phone_number
