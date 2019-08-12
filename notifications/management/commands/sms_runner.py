@@ -1,4 +1,4 @@
-from users.models import CustomUser
+from users.models import Profile
 from subscriptions.models import Subscription
 from notifications.models import Notification
 from notifications.send_sms import send_sms
@@ -15,12 +15,13 @@ class Command(BaseCommand):
     message_text = "It's a new month. Log into your account at https://subreckoner.herokuapp.com/ to see what subscriptions are due this month."
 
     if now.date == 12:
-      users_with_notification_on = CustomUser.objects.exclude(profile__isnull=True)
+      profiles = Profile.objects.all()
       # notifitions_sent = CustomUser.objects.filter(notifications__time_stamp__year=now.year, notifications__time_stamp__month=now.month)
       # users_to_notify = users_with_notification_on.difference(notifitions_sent)
 
-      for user in users_with_notification_on:
-        phone_number = user.profile.phone_number
+      for profile in profiles:
+        phone_number = profile.phone_number
+        print(phone_number)
         send_sms(phone_number, message_text)
         note = Notification(phone_number=phone_number, user=user.id, message=message_text)
         note.save()
