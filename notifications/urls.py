@@ -1,8 +1,6 @@
 from django.conf.urls import url
-
-from . import views
-
+from .views import sms_response
 
 urlpatterns = [
-    url(r'^$', views.sms_response, name='sms'),
-]
+  url(r'^$', sms_response, name='sms')
+  ]
