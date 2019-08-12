@@ -4,6 +4,6 @@ from .api import router
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    # url(r'^token-auth/', views.obtain_auth_token),
+    url(r'^sms/', include('sms.urls')),
     url(r'^api/', include(router.urls)),
 ]
