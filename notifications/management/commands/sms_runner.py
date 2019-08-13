@@ -23,5 +23,5 @@ class Command(BaseCommand):
         phone_number = profile.phone_number
         print(phone_number)
         send_sms(phone_number, message_text)
-        note = Notification(phone_number=phone_number, user=profile.user, message=message_text)
-        note.save()
+#         note = Notification(phone_number=phone_number, user=profile.user, message=message_text)
+#         note.save()
