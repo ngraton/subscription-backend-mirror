@@ -14,7 +14,7 @@ class Command(BaseCommand):
 
     message_text = "It's a new month. Log into your account at https://subreckoner.herokuapp.com/ to see what subscriptions are due this month."
 
-    if now.day == 01:
+    if now.day == 1:
 #     if True:
       profiles = Profile.objects.all()
       # notifitions_sent = CustomUser.objects.filter(notifications__time_stamp__year=now.year, notifications__time_stamp__month=now.month)
